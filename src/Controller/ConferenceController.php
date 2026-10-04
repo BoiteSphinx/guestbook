@@ -8,6 +8,7 @@ use App\Repository\ConferenceRepository;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
 use Twig\Environment;
 
@@ -22,11 +23,13 @@ final class ConferenceController extends AbstractController
     }
 
     #[Route('/conference/{id}', name: 'conference')]
-    public function show(Environment $twig, #[MapEntity] Conference $conference, CommentRepository $commentRepository): Response
+    public function show(Environment $twig, #[MapEntity] Conference $conference, CommentRepository $commentRepository, #[MapQueryParameter(options: ['min_range' => 0])] int $offset = 0): Response
     {
+        $paginator = $commentRepository->getCommentsPaginated($conference, $offset);
+
         return new Response($twig->render('conference/show.html.twig', [
             'conference' => $conference,
-            'comments' => $commentRepository->findBy(['conference' => $conference], ['createdAt' => 'DESC']),
+            'comments' => $paginator,
         ]));
     }
 }
