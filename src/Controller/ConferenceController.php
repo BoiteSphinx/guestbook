@@ -21,8 +21,8 @@ final class ConferenceController extends AbstractController
         ]);
     }
 
-    #[Route('/conference/{id}', name: 'conference')]
-    public function show(#[MapEntity] Conference $conference, CommentRepository $commentRepository, ConferenceRepository $conferenceRepository, #[MapQueryParameter(options: ['min_range' => 0])] int $offset = 0): Response
+    #[Route('/conference/{slug:conference}', name: 'conference')]
+    public function show(Conference $conference, CommentRepository $commentRepository, ConferenceRepository $conferenceRepository, #[MapQueryParameter(options: ['min_range' => 0])] int $offset = 0): Response
     {
         $paginator = $commentRepository->getCommentsPaginated($conference, $offset);
 

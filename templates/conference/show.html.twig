@@ -23,13 +23,13 @@
 
         {% if comments.hasPreviousPage() %}
             <a href="{{ path('conference', {
-                id: conference.id,
+                slug: conference.slug,
                 offset: (comments.getPageNumber() - 2) * constant('App\\Repository\\CommentRepository::COMMENTS_PER_PAGE')
             }) }}">Previous</a>
         {% endif %}
         {% if comments.hasNextPage() %}
             <a href="{{ path('conference', {
-                id: conference.id,
+                slug: conference.slug,
                 offset: comments.getPageNumber() * constant('App\\Repository\\CommentRepository::COMMENTS_PER_PAGE')
             }) }}">Next</a>
         {% endif %}
