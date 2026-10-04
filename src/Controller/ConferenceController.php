@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Conference;
+use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use App\Repository\ConferenceRepository;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
@@ -24,12 +26,16 @@ final class ConferenceController extends AbstractController
     #[Route('/conference/{slug:conference}', name: 'conference')]
     public function show(Conference $conference, CommentRepository $commentRepository, ConferenceRepository $conferenceRepository, #[MapQueryParameter(options: ['min_range' => 0])] int $offset = 0): Response
     {
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+
         $paginator = $commentRepository->getCommentsPaginated($conference, $offset);
 
         return $this->render('conference/show.html.twig', [
             'conferences' => $conferenceRepository->findAll(),
             'conference' => $conference,
             'comments' => $paginator,
+            'comment_form' => $form,
         ]);
     }
 }
