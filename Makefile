@@ -14,3 +14,6 @@ start: ## Starts the project
 stop:
 	$(DOCKER) compose down
 	$(SYMFONY) server:stop
+
+test:
+	$(SYMFONY) php bin/phpunit
