@@ -22,25 +22,6 @@ class ConferenceControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h2', 'Give your feedback');
     }
 
-    public function testConferencePage(): void
-    {
-        $client = static::createClient();
-
-        $amsterdam = ConferenceFactory::createOne(['city' => 'Amsterdam', 'year' => '2019', 'isInternational' => true]);
-        ConferenceFactory::createOne(['city' => 'Paris', 'year' => '2020', 'isInternational' => false]);
-        CommentFactory::createOne(['conference' => $amsterdam]);
-
-        $crawler = $client->request('GET', '/');
-
-        $this->assertCount(2, $crawler->filter('h4'));
-
-        $client->clickLink('View');
-
-        $this->assertPageTitleContains('Amsterdam');
-        $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h2', 'Amsterdam 2019');
-        $this->assertSelectorExists('div:contains("There are 1 comments")');
-    }
 
     public function testCommentSubmission(): void
     {
@@ -59,5 +40,26 @@ class ConferenceControllerTest extends WebTestCase
         $this->assertResponseRedirects();
         $client->followRedirect();
         $this->assertSelectorExists('div:contains("There are 2 comments")');
+    }
+
+
+    public function testConferencePage(): void
+    {
+        $client = static::createClient();
+
+        $amsterdam = ConferenceFactory::createOne(['city' => 'Amsterdam', 'year' => '2019', 'isInternational' => true]);
+        ConferenceFactory::createOne(['city' => 'Paris', 'year' => '2020', 'isInternational' => false]);
+        CommentFactory::createOne(['conference' => $amsterdam]);
+
+        $crawler = $client->request('GET', '/');
+
+        $this->assertCount(2, $crawler->filter('h4'));
+
+        $client->clickLink('View');
+
+        $this->assertPageTitleContains('Amsterdam');
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h2', 'Amsterdam 2019');
+        $this->assertSelectorExists('div:contains("There are 1 comments")');
     }
 }
