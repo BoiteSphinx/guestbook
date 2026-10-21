@@ -4,21 +4,22 @@ namespace App\Tests\Controller;
 
 use App\Factory\CommentFactory;
 use App\Factory\ConferenceFactory;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\Panther\PantherTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class ConferenceControllerTest extends WebTestCase
+class ConferenceControllerTest extends PantherTestCase
 {
     use Factories;
     use ResetDatabase;
 
     public function testIndex(): void
     {
-        $client = static::createClient();
+        // $client = static::createPantherClient(['external_base_uri' => rtrim($_SERVER['SYMFONY_PROJECT_DEFAULT_ROUTE_URL'], '/')]);
+        $client = static::createPantherClient(['external_base_uri' => rtrim($_SERVER['SYMFONY_PROJECT_DEFAULT_ROUTE_URL'], '/')]);
         $client->request('GET', '/');
 
-        $this->assertResponseIsSuccessful();
+        $this->assertSelectorExists('body');
         $this->assertSelectorTextContains('h2', 'Give your feedback');
     }
 
