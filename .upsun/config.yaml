@@ -1,10 +1,19 @@
 routes:
-    "https://{all}/": { type: upstream, upstream: "app:http" }
+    "https://{all}/": { type: upstream, upstream: "varnish:http", cache: { enabled: false } }
     "http://{all}/": { type: redirect, to: "https://{all}/" }
 
 services:
     database:
         type: postgresql:16
+
+    varnish:
+        type: varnish:9.0
+        relationships:
+            application: 'app:http'
+        configuration:
+            vcl: !include
+                type: string
+                path: config.vcl
 
 applications:
     app:
