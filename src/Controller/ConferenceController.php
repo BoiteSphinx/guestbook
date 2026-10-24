@@ -34,6 +34,15 @@ final class ConferenceController extends AbstractController
         ]);
     }
 
+    #[Cache(smaxage: 3600)]
+    #[Route('/conference_header', name: 'conference_header')]
+    public function conferenceHeader(ConferenceRepository $conferenceRepository): Response
+    {
+        return $this->render('conference/header.html.twig', [
+            'conferences' => $conferenceRepository->findAll(),
+        ]);
+    }
+
     #[Route('/conference/{slug:conference}', name: 'conference')]
     public function show(
         Request $request,
