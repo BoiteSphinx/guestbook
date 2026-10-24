@@ -21,7 +21,7 @@ class AdminController extends AbstractController
         private MessageBusInterface $bus,
     ) {}
 
-    #[Route('/admin/comments.review/{id}', name: 'review_comment')]
+    #[Route('/admin/comments/review/{id}', name: 'review_comment')]
     public function reviewComment(Request $request, Comment $comment, WorkflowInterface $commentStateMachine): Response
     {
         $accepted = !$request->query->get('reject');
