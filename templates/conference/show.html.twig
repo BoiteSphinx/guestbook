@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 {% endfor %}
-                <div>{{ 'nb_of_comments'|trans({ count: comments.getTotalCount() }) }}</div>
+                <div id="comments-count">{{ 'nb_of_comments'|trans({ count: comments.getTotalCount() }) }}</div>
 
                 {% if comments.hasPreviousPage() %}
                     <a href="{{ path('conference', {
