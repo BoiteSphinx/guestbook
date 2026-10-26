@@ -37,19 +37,25 @@
                         </div>
                     </div>
                 {% endfor %}
-                <div>There are {{ comments.getTotalCount() }} comments.</div>
+                <div>{{ 'nb_of_comments'|trans({ count: comments.getTotalCount() }) }}</div>
 
                 {% if comments.hasPreviousPage() %}
                     <a href="{{ path('conference', {
                         slug: conference.slug,
                         offset: comments.getPreviousWindow().getFirstResult()
-                    }) }}">Previous</a>
+                    }) }}"
+                    >
+                        {{ 'Previous'|trans }}
+                    </a>
                 {% endif %}
                 {% if comments.hasNextPage() %}
                     <a href="{{ path('conference', {
                         slug: conference.slug,
                         offset: comments.getNextWindow().getFirstResult()
-                    }) }}">Next</a>
+                    }) }}"
+                    >
+                        {{ 'Next'|trans }}
+                    </a>
                 {% endif %}
             {% else %}
                 <div class="text-center">
@@ -61,7 +67,7 @@
         <div class="col-12 col-lg-4">
             <div class="bg-light shadow border rounded-3 p-4">
                 <h3 class="font-weight-light">
-                    Add your own feedback
+                    {{ 'Add your own feedback'|trans }}
                 </h3>
 
                 {{ form(comment_form) }}

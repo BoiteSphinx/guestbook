@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="ySSekOj" resname="form.author">
+        <source>form.author</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="mnnc3lg" resname="form.text">
+        <source>form.text</source>
+        <target>Message</target>
+      </trans-unit>
+      <trans-unit id="vXLetA0" resname="form.email">
+        <source>form.email</source>
+        <target>Email adress</target>
+      </trans-unit>
+      <trans-unit id="eFiRC8S" resname="form.photo">
+        <source>form.photo</source>
+        <target>Photo</target>
+      </trans-unit>
+      <trans-unit id="gbGyQYS" resname="form.submit">
+        <source>form.submit</source>
+        <target>Submit</target>
+      </trans-unit>
+     <trans-unit id="C6tPmYm" resname="nb_of_comments">
+        <source>nb_of_comments</source>
+        <target>{count, plural, =0 {There are no comments.} =1 {There is one comment.} other {There are # comments.}}</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

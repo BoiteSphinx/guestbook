@@ -41,6 +41,22 @@
         <source>form.submit</source>
         <target>Envoyer</target>
       </trans-unit>
+      <trans-unit id="C6tPmYm" resname="nb_of_comments">
+        <source>nb_of_comments</source>
+        <target>{count, plural, =0 {Aucun commentaire.} =1 {1 commentaire.} other {# commentaires.}}</target>
+      </trans-unit>
+      <trans-unit id="EooKgBG" resname="Add your own feedback">
+        <source>Add your own feedback</source>
+        <target>Donnez votre avis</target>
+      </trans-unit>
+      <trans-unit id="ouNrIYq" resname="Previous">
+        <source>Previous</source>
+        <target>Précédent</target>
+      </trans-unit>
+      <trans-unit id="gefhnBC" resname="Next">
+        <source>Next</source>
+        <target>Suivant</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
