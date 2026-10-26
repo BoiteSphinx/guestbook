@@ -7,7 +7,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
 
         {% block stylesheets %}
-            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,600,600i&display=swap" rel="stylesheet" />
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,600,600i&display=swap" rel="stylesheet"/>
         {% endblock %}
 
         {% block javascripts %}
@@ -20,9 +20,9 @@
                 Conference Guestbook
             </h1>
 
-            <nav class="navbar navbar-expand-x1 navbar-light bg-light">
+            <nav class="navbar navbar-expand-xl navbar-light bg-light">
                 <div class="container mt-4 mb-3">
-                    <a class="navbar_brand me-4 pr-2" href="{{ path('homepage') }}">
+                    <a class="navbar-brand me-4 pr-2" href="{{ path('homepage') }}">
                         &#128217; Conference Guestbook
                     </a>
 
@@ -36,6 +36,23 @@
                                 <a class="nav-link" href="{{ path('admin') }}">
                                     Admin
                                 </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a
+                                    href="#"
+                                    class="nav-link dropdown-toggle"
+                                    id="dropdown-language"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                >
+                                    {{ app.request.locale|locale_name(app.request.locale)|u.title }}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdown-language">
+                                    <li><a href="{{ path('homepage', { _locale: 'en' }) }}" class="dropdown-item">English</a></li>
+                                    <li><a href="{{ path('homepage', { _locale: 'fr' }) }}" class="dropdown-item">Français</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
